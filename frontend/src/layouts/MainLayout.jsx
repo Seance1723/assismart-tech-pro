@@ -7,6 +7,7 @@ const MENU = {
     { to: '/admin', label: 'Dashboard', exact: true },
     { to: '/admin/subscription', label: 'Subscription Management' },
     { to: '/admin/examiners', label: 'Examiner Management' },
+    { to: '/admin/candidates', label: 'Candidate Management' },
     // Add more admin links as needed
   ],
   examiner: [

@@ -7,6 +7,7 @@ import authRoutes from './routes/auth.js';
 import subscriptionRoutes from './routes/subscription.js';
 import examinerRoutes from './routes/examiners.js';
 import { errorHandler } from './middleware/errorHandler.js';
+import candidateRoutes from './routes/candidates.js';
 
 const app = express();
 app.use(cors());
@@ -16,6 +17,8 @@ app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/api/subscriptions', subscriptionRoutes);
 app.use('/api/examiners', examinerRoutes);
+app.use('/api/candidates', candidateRoutes);
+
 
 // Health check / welcome
 app.get('/', (req, res) => {

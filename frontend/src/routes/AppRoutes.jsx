@@ -4,13 +4,21 @@ import useAuth from '../auth/useAuth'
 import LoginPage from '../auth/LoginPage'
 import RegisterPage from '../auth/RegisterPage'
 import MainLayout from '../layouts/MainLayout'
+
+// ADMIN
 import AdminDashboard from '../features/admin/AdminDashboard'
 import SubscriptionManagement from '../features/admin/SubscriptionManagement'
+import ExaminerManagement from '../features/admin/ExaminerManagement'
+
+// EXAMINER
 import ExaminerDashboard from '../features/examiner/ExaminerDashboard'
+import WelcomePage from '../features/examiner/WelcomePage'
+
+// CANDIDATE
 import CandidateDashboard from '../features/candidate/CandidateDashboard'
 
 export default function AppRoutes() {
-  const { token, role } = useAuth()
+  const { token, role, user } = useAuth() // assume user includes examiner status/quota
 
   if (!token) {
     return (
@@ -30,18 +38,32 @@ export default function AppRoutes() {
           <>
             <Route path="admin" element={<AdminDashboard />} />
             <Route path="admin/subscription" element={<SubscriptionManagement />} />
+            <Route path="admin/examiners" element={<ExaminerManagement />} />
             {/* Add more admin routes here */}
           </>
         )}
 
         {/* EXAMINER ROUTES */}
         {role === 'examiner' && (
-          <Route path="examiner" element={<ExaminerDashboard />} />
+          <>
+            <Route
+              path="examiner"
+              element={
+                user?.status === 'approved'
+                  ? <ExaminerDashboard />
+                  : <WelcomePage />
+              }
+            />
+            {/* You can add more examiner routes here */}
+          </>
         )}
 
         {/* CANDIDATE ROUTES */}
         {role === 'candidate' && (
-          <Route path="candidate" element={<CandidateDashboard />} />
+          <>
+            <Route path="candidate" element={<CandidateDashboard />} />
+            {/* Add more candidate routes here */}
+          </>
         )}
 
         {/* Default and fallback */}

@@ -5,17 +5,19 @@ dotenv.config();
 
 import authRoutes from './routes/auth.js';
 import subscriptionRoutes from './routes/subscription.js';
+import examinerRoutes from './routes/examiners.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Auth routes
+// API endpoints
 app.use('/auth', authRoutes);
 app.use('/api/subscriptions', subscriptionRoutes);
+app.use('/api/examiners', examinerRoutes);
 
-// Health‑check / welcome
+// Health check / welcome
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to Assismart Tech Pro API' });
 });

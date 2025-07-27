@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import useAuth from './useAuth'
 import { login as loginApi } from '../api/authApi'
 
@@ -16,8 +16,7 @@ export default function LoginPage() {
       const res   = await loginApi({ email, password })
       const token = res.data.token
       const payload = JSON.parse(atob(token.split('.')[1]))
-      const userRole = payload.role || 'candidate'
-      login(token, userRole)
+      login(token, payload.role)
       navigate('/')
     } catch (err) {
       setError(err.response?.data?.error || 'Login failed')
@@ -47,6 +46,10 @@ export default function LoginPage() {
         </div>
         <button type="submit">Login</button>
       </form>
+      <p>
+        Don’t have an account?{' '}
+        <Link to="/register">Register here</Link>
+      </p>
     </div>
   )
 }

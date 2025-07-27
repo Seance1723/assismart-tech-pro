@@ -6,9 +6,13 @@ export async function registerUser(email, password) {
   if (await findUserByEmail(email)) {
     throw new Error('Email already in use');
   }
-  const hash = await bcrypt.hash(password, 10);
+  const hash   = await bcrypt.hash(password, 10);
   const userId = await createUser(email, hash);
-  return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  return jwt.sign(
+    { userId, role: 'candidate' },
+    process.env.JWT_SECRET,
+    { expiresIn: '1h' }
+  );
 }
 
 export async function loginUser(email, password) {
@@ -20,5 +24,9 @@ export async function loginUser(email, password) {
   if (!match) {
     throw new Error('Invalid credentials');
   }
-  return jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  return jwt.sign(
+    { userId: user.id, role: user.role },
+    process.env.JWT_SECRET,
+    { expiresIn: '1h' }
+  );
 }

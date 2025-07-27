@@ -2,6 +2,7 @@ import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import useAuth from '../auth/useAuth'
 import LoginPage from '../auth/LoginPage'
+import RegisterPage from '../auth/RegisterPage'
 import MainLayout from '../layouts/MainLayout'
 import AdminDashboard from '../features/admin/AdminDashboard'
 import ExaminerDashboard from '../features/examiner/ExaminerDashboard'
@@ -13,8 +14,9 @@ export default function AppRoutes() {
   if (!token) {
     return (
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="/login"    element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="*"         element={<Navigate to="/login" replace />} />
       </Routes>
     )
   }
@@ -22,15 +24,9 @@ export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
-        {role === 'admin' && (
-          <Route path="admin" element={<AdminDashboard />} />
-        )}
-        {role === 'examiner' && (
-          <Route path="examiner" element={<ExaminerDashboard />} />
-        )}
-        {role === 'candidate' && (
-          <Route path="candidate" element={<CandidateDashboard />} />
-        )}
+        {role === 'admin'     && <Route path="admin"     element={<AdminDashboard    />} />}
+        {role === 'examiner'  && <Route path="examiner"  element={<ExaminerDashboard />} />}
+        {role === 'candidate' && <Route path="candidate" element={<CandidateDashboard/>} />}
         <Route path="/" element={<Navigate to={`/${role}`} replace />} />
         <Route path="*" element={<Navigate to={`/${role}`} replace />} />
       </Route>

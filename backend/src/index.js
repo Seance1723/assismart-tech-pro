@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import authRoutes from './routes/auth.js';
+import subscriptionRoutes from './routes/subscription.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.json());
 
 // Auth routes
 app.use('/auth', authRoutes);
+app.use('/api/subscriptions', subscriptionRoutes);
 
 // Health‑check / welcome
 app.get('/', (req, res) => {

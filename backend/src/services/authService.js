@@ -7,9 +7,9 @@ export async function registerUser(email, password) {
     throw new Error('Email already in use');
   }
   const hash   = await bcrypt.hash(password, 10);
-  const userId = await createUser(email, hash);
+  const userId = await createUser(email, hash, 'examiner'); // set default role
   return jwt.sign(
-    { userId, role: 'candidate' },
+    { userId, role: 'examiner' },
     process.env.JWT_SECRET,
     { expiresIn: '1h' }
   );
@@ -20,7 +20,10 @@ export async function loginUser(email, password) {
   if (!user) {
     throw new Error('Invalid credentials');
   }
+  console.log('Login password:', password);
+  console.log('Stored hash:', user.password_hash);
   const match = await bcrypt.compare(password, user.password_hash);
+  console.log('Bcrypt match:', match);
   if (!match) {
     throw new Error('Invalid credentials');
   }
@@ -30,3 +33,4 @@ export async function loginUser(email, password) {
     { expiresIn: '1h' }
   );
 }
+

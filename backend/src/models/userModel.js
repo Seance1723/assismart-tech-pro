@@ -5,13 +5,14 @@ export async function findUserByEmail(email) {
     'SELECT id, password_hash, role FROM users WHERE email = ?',
     [email]
   );
+  console.log('findUserByEmail:', rows); // Add this line
   return rows[0];
 }
 
-export async function createUser(email, passwordHash) {
+export async function createUser(email, passwordHash, role = 'examiner') {
   const [result] = await pool.query(
-    'INSERT INTO users (email, password_hash) VALUES (?, ?)',
-    [email, passwordHash]
+    'INSERT INTO users (email, password_hash, role) VALUES (?, ?, ?)',
+    [email, passwordHash, role]
   );
   return result.insertId;
 }

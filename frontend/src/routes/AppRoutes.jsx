@@ -19,6 +19,7 @@ import CertificateTemplates from '../features/admin/CertificateTemplates';
 // EXAMINER
 import ExaminerDashboard from '../features/examiner/ExaminerDashboard'
 import WelcomePage from '../features/examiner/WelcomePage'
+import SubscriptionAndBilling from '../features/examiner/SubscriptionAndBilling'
 
 // CANDIDATE
 import CandidateDashboard from '../features/candidate/CandidateDashboard'
@@ -69,6 +70,7 @@ export default function AppRoutes() {
                   : <WelcomePage />
               }
             />
+            <Route path="examiner/subscription" element={<SubscriptionAndBilling />} />
             {/* You can add more examiner routes here */}
           </>
         )}

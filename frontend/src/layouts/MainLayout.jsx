@@ -15,6 +15,7 @@ const MENU = {
   ],
   examiner: [
     { to: "/examiner", label: "Dashboard", exact: true },
+    { to: "/examiner/subscription", label: "Subscription & Billing" }
     // Add more examiner links if needed
   ],
   candidate: [

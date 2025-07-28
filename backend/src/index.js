@@ -16,6 +16,7 @@ import questionCategoryRoutes from './routes/questionCategories.js';
 import questionRoutes from './routes/questions.js';
 import certificateRoutes from './routes/certificates.js';
 import subscriptionRoutes from './routes/subscriptions.js';
+import examinerSubscriptionRoutes from './routes/examinerSubscriptions.js';
 
 dotenv.config();
 const app = express();
@@ -40,6 +41,7 @@ app.use('/api/question-categories', questionCategoryRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api/certificates', certificateRoutes);
 app.use('/api/subscriptions', subscriptionRoutes);
+app.use('/api/examiner-subscription', examinerSubscriptionRoutes);
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 

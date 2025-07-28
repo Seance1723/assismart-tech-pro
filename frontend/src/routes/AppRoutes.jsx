@@ -29,6 +29,7 @@ import AssignedExamsView from '../features/examiner/AssignedExamsView'
 import CandidateDashboard from '../features/candidate/CandidateDashboard'
 import CertificateViewer from '../features/candidate/CertificateViewer'
 import ExamInterface from '../features/candidate/ExamInterface'
+import ExamResultView from '../features/candidate/ExamResultView'
 
 // PUBLIC
 import PublicCertificateVerify from '../features/PublicCertificateVerify'
@@ -90,6 +91,7 @@ export default function AppRoutes() {
           <>
             <Route path="candidate" element={<CandidateDashboard />} />
             <Route path="candidate/exam/:exam_id" element={<ExamInterface />} />
+            <Route path="candidate/results/:exam_id/:attempt" element={<ExamResultView />} />
             <Route path="candidate/certificates" element={<CertificateViewer />} />
             {/* Add more candidate routes here */}
           </>

@@ -24,6 +24,7 @@ import examinerDashboardRoutes from './routes/examinerDashboard.js';
 import examinerReportsRoutes from './routes/examinerReports.js';
 import candidateDashboardRoutes from './routes/candidateDashboard.js';
 import candidateExamRoutes from './routes/candidateExam.js';
+import candidateResultsRoutes from './routes/candidateResults.js';
 
 dotenv.config();
 const app = express();
@@ -56,6 +57,7 @@ app.use('/api/examiner-dashboard', examinerDashboardRoutes);
 app.use('/api/examiner-reports', examinerReportsRoutes);
 app.use('/api/candidate-dashboard', candidateDashboardRoutes);
 app.use('/api/candidate-exam', candidateExamRoutes);
+app.use('/api/candidate-results', candidateResultsRoutes);
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 

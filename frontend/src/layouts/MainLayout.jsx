@@ -11,10 +11,13 @@ const MENU = {
     { to: "/admin/exams", label: "Exam Management" },
     { to: "/admin/question-groups", label: "Question Group Management" },
     { to: "/admin/assign-exam", label: "Assign Exam to Candidate" },
+    { to: '/admin/assign-exams', label: 'Assign Exams to Examiner' },
     { to: "/admin/certificate-templates", label: "Certificate Templates" }
   ],
   examiner: [
     { to: "/examiner", label: "Dashboard", exact: true },
+    { to: "/examiner/candidates", label: "Candidate Management" },
+    { to: '/examiner/assigned-exams', label: 'My Assigned Exams' },
     { to: "/examiner/subscription", label: "Subscription & Billing" }
     // Add more examiner links if needed
   ],

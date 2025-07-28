@@ -12,21 +12,24 @@ import ExaminerManagement from '../features/admin/ExaminerManagement'
 import CandidateManagement from '../features/admin/CandidateManagement'
 import ExamManagement from '../features/admin/ExamManagement'
 import QuestionGroupManagement from '../features/admin/QuestionGroupManagement'
-import AssignExamToCandidate from '../features/admin/AssignExamToCandidate';
-import CertificateTemplates from '../features/admin/CertificateTemplates';
+import AssignExamToCandidate from '../features/admin/AssignExamToCandidate'
+import CertificateTemplates from '../features/admin/CertificateTemplates'
+import AssignExamsToExaminer from '../features/admin/AssignExamsToExaminer'
 
 
 // EXAMINER
 import ExaminerDashboard from '../features/examiner/ExaminerDashboard'
 import WelcomePage from '../features/examiner/WelcomePage'
 import SubscriptionAndBilling from '../features/examiner/SubscriptionAndBilling'
+import ExaminerCandidateManagement from '../features/examiner/ExaminerCandidateManagement'
+import AssignedExamsView from '../features/examiner/AssignedExamsView'
 
 // CANDIDATE
 import CandidateDashboard from '../features/candidate/CandidateDashboard'
-import CertificateViewer from '../features/candidate/CertificateViewer';
+import CertificateViewer from '../features/candidate/CertificateViewer'
 
 // PUBLIC
-import PublicCertificateVerify from '../features/PublicCertificateVerify';
+import PublicCertificateVerify from '../features/PublicCertificateVerify'
 
 export default function AppRoutes() {
   const { token, role, user } = useAuth() // assume user includes examiner status/quota
@@ -55,6 +58,7 @@ export default function AppRoutes() {
             <Route path="admin/question-groups" element={<QuestionGroupManagement />} />
             <Route path="admin/assign-exam" element={<AssignExamToCandidate />} />
             <Route path="admin/certificate-templates" element={<CertificateTemplates />} />
+            <Route path="admin/assign-exams" element={<AssignExamsToExaminer />} />
             {/* Add more admin routes here */}
           </>
         )}
@@ -70,7 +74,10 @@ export default function AppRoutes() {
                   : <WelcomePage />
               }
             />
+            <Route path="examiner/candidates" element={<ExaminerCandidateManagement />} />
+            <Route path="examiner/assigned-exams" element={<AssignedExamsView />} />
             <Route path="examiner/subscription" element={<SubscriptionAndBilling />} />
+
             {/* You can add more examiner routes here */}
           </>
         )}

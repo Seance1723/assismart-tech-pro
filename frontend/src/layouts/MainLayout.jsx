@@ -16,6 +16,7 @@ const MENU = {
   ],
   examiner: [
     { to: "/examiner", label: "Dashboard", exact: true },
+    { to: '/examiner/reports', label: 'Reports & Analytics' },
     { to: "/examiner/candidates", label: "Candidate Management" },
     { to: '/examiner/assigned-exams', label: 'My Assigned Exams' },
     { to: "/examiner/subscription", label: "Subscription & Billing" }

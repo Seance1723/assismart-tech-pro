@@ -20,6 +20,10 @@ import examinerSubscriptionRoutes from './routes/examinerSubscriptions.js';
 import examinerCandidateRoutes from './routes/examinerCandidates.js';
 import adminExaminerAssignmentsRoutes from './routes/adminExaminerAssignments.js';
 import examinerAssignmentsRoutes from './routes/examinerAssignments.js';
+import examinerDashboardRoutes from './routes/examinerDashboard.js';
+import examinerReportsRoutes from './routes/examinerReports.js';
+import candidateDashboardRoutes from './routes/candidateDashboard.js';
+import candidateExamRoutes from './routes/candidateExam.js';
 
 dotenv.config();
 const app = express();
@@ -48,6 +52,10 @@ app.use('/api/examiner-subscription', examinerSubscriptionRoutes);
 app.use('/api/examiner-candidates', examinerCandidateRoutes);
 app.use('/api/admin/examiner-assignments', adminExaminerAssignmentsRoutes);
 app.use('/api/examiner/assignments', examinerAssignmentsRoutes);
+app.use('/api/examiner-dashboard', examinerDashboardRoutes);
+app.use('/api/examiner-reports', examinerReportsRoutes);
+app.use('/api/candidate-dashboard', candidateDashboardRoutes);
+app.use('/api/candidate-exam', candidateExamRoutes);
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 

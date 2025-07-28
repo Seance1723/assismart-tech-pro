@@ -20,6 +20,7 @@ import AssignExamsToExaminer from '../features/admin/AssignExamsToExaminer'
 // EXAMINER
 import ExaminerDashboard from '../features/examiner/ExaminerDashboard'
 import WelcomePage from '../features/examiner/WelcomePage'
+import ReportsAndAnalytics from '../features/examiner/ReportsAndAnalytics'
 import SubscriptionAndBilling from '../features/examiner/SubscriptionAndBilling'
 import ExaminerCandidateManagement from '../features/examiner/ExaminerCandidateManagement'
 import AssignedExamsView from '../features/examiner/AssignedExamsView'
@@ -27,6 +28,7 @@ import AssignedExamsView from '../features/examiner/AssignedExamsView'
 // CANDIDATE
 import CandidateDashboard from '../features/candidate/CandidateDashboard'
 import CertificateViewer from '../features/candidate/CertificateViewer'
+import ExamInterface from '../features/candidate/ExamInterface'
 
 // PUBLIC
 import PublicCertificateVerify from '../features/PublicCertificateVerify'
@@ -74,6 +76,7 @@ export default function AppRoutes() {
                   : <WelcomePage />
               }
             />
+            <Route path="examiner/reports" element={<ReportsAndAnalytics />} />
             <Route path="examiner/candidates" element={<ExaminerCandidateManagement />} />
             <Route path="examiner/assigned-exams" element={<AssignedExamsView />} />
             <Route path="examiner/subscription" element={<SubscriptionAndBilling />} />
@@ -86,6 +89,7 @@ export default function AppRoutes() {
         {role === 'candidate' && (
           <>
             <Route path="candidate" element={<CandidateDashboard />} />
+            <Route path="candidate/exam/:exam_id" element={<ExamInterface />} />
             <Route path="candidate/certificates" element={<CertificateViewer />} />
             {/* Add more candidate routes here */}
           </>

@@ -11,6 +11,8 @@ import SubscriptionManagement from '../features/admin/SubscriptionManagement'
 import ExaminerManagement from '../features/admin/ExaminerManagement'
 import CandidateManagement from '../features/admin/CandidateManagement'
 import ExamManagement from '../features/admin/ExamManagement'
+import QuestionGroupManagement from '../features/admin/QuestionGroupManagement'
+import AssignExamToCandidate from '../features/admin/AssignExamToCandidate';
 
 // EXAMINER
 import ExaminerDashboard from '../features/examiner/ExaminerDashboard'
@@ -43,6 +45,8 @@ export default function AppRoutes() {
             <Route path="admin/examiners" element={<ExaminerManagement />} />
             <Route path="admin/candidates" element={<CandidateManagement />} />
             <Route path="admin/exams" element={<ExamManagement />} />
+            <Route path="admin/question-groups" element={<QuestionGroupManagement />} />
+            <Route path="admin/assign-exam" element={<AssignExamToCandidate />} />
             {/* Add more admin routes here */}
           </>
         )}

@@ -9,6 +9,8 @@ const MENU = {
     { to: '/admin/examiners', label: 'Examiner Management' },
     { to: '/admin/candidates', label: 'Candidate Management' },
     { to: '/admin/exams', label: 'Exam Management' },
+    { to: '/admin/question-groups', label: 'Question Group Management' },
+    { to: '/admin/assign-exam', label: 'Assign Exam to Candidate' },
     // Add more admin links as needed
   ],
   examiner: [

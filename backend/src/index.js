@@ -9,6 +9,9 @@ import examinerRoutes from './routes/examiners.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import candidateRoutes from './routes/candidates.js';
 import examRoutes from './routes/exams.js';
+import questionCategoryRoutes from './routes/questionCategories.js';
+import questionRoutes from './routes/questions.js';
+import examAssignmentRoutes from './routes/examAssignments.js';
 
 const app = express();
 app.use(cors());
@@ -20,6 +23,9 @@ app.use('/api/subscriptions', subscriptionRoutes);
 app.use('/api/examiners', examinerRoutes);
 app.use('/api/candidates', candidateRoutes);
 app.use('/api/exams', examRoutes);
+app.use('/api/question-categories', questionCategoryRoutes);
+app.use('/api/questions', questionRoutes);
+app.use('/api/exam-assignments', examAssignmentRoutes);
 
 
 // Health check / welcome

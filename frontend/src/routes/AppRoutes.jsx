@@ -10,6 +10,7 @@ import AdminDashboard from '../features/admin/AdminDashboard'
 import SubscriptionManagement from '../features/admin/SubscriptionManagement'
 import ExaminerManagement from '../features/admin/ExaminerManagement'
 import CandidateManagement from '../features/admin/CandidateManagement'
+import ExamManagement from '../features/admin/ExamManagement'
 
 // EXAMINER
 import ExaminerDashboard from '../features/examiner/ExaminerDashboard'
@@ -41,6 +42,7 @@ export default function AppRoutes() {
             <Route path="admin/subscription" element={<SubscriptionManagement />} />
             <Route path="admin/examiners" element={<ExaminerManagement />} />
             <Route path="admin/candidates" element={<CandidateManagement />} />
+            <Route path="admin/exams" element={<ExamManagement />} />
             {/* Add more admin routes here */}
           </>
         )}

@@ -8,6 +8,7 @@ const MENU = {
     { to: '/admin/subscription', label: 'Subscription Management' },
     { to: '/admin/examiners', label: 'Examiner Management' },
     { to: '/admin/candidates', label: 'Candidate Management' },
+    { to: '/admin/exams', label: 'Exam Management' },
     // Add more admin links as needed
   ],
   examiner: [

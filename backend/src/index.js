@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 
 // Route imports
 import authRoutes from './routes/auth.js';
+import adminDashboardRoutes from './routes/adminDashboard.js';
 import candidateRoutes from './routes/candidates.js';
 import examinerRoutes from './routes/examiners.js';
 import examRoutes from './routes/exams.js';
@@ -30,6 +31,7 @@ app.use(morgan('dev'));
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 app.use('/api/auth', authRoutes);
+app.use('/api/admin-dashboard', adminDashboardRoutes);
 app.use('/api/candidates', candidateRoutes);
 app.use('/api/examiners', examinerRoutes);
 app.use('/api/exams', examRoutes);

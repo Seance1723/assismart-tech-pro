@@ -1,37 +1,38 @@
-import React from 'react'
-import { NavLink, Outlet, useNavigate } from 'react-router-dom'
-import useAuth from '../auth/useAuth'
+import React from "react";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import useAuth from "../auth/useAuth";
 
 const MENU = {
   admin: [
-    { to: '/admin', label: 'Dashboard', exact: true },
-    { to: '/admin/subscription', label: 'Subscription Management' },
-    { to: '/admin/examiners', label: 'Examiner Management' },
-    { to: '/admin/candidates', label: 'Candidate Management' },
-    { to: '/admin/exams', label: 'Exam Management' },
-    { to: '/admin/question-groups', label: 'Question Group Management' },
-    { to: '/admin/assign-exam', label: 'Assign Exam to Candidate' },
-    // Add more admin links as needed
+    { to: "/admin", label: "Dashboard", exact: true },
+    { to: "/admin/subscription", label: "Subscription Management" },
+    { to: "/admin/examiners", label: "Examiner Management" },
+    { to: "/admin/candidates", label: "Candidate Management" },
+    { to: "/admin/exams", label: "Exam Management" },
+    { to: "/admin/question-groups", label: "Question Group Management" },
+    { to: "/admin/assign-exam", label: "Assign Exam to Candidate" },
+    { to: "/admin/certificate-templates", label: "Certificate Templates" }
   ],
   examiner: [
-    { to: '/examiner', label: 'Dashboard', exact: true },
-    // Add more examiner links as needed
+    { to: "/examiner", label: "Dashboard", exact: true },
+    // Add more examiner links if needed
   ],
   candidate: [
-    { to: '/candidate', label: 'Dashboard', exact: true },
-    // Add more candidate links as needed
-  ]
-}
+    { to: "/candidate", label: "Dashboard", exact: true },
+    { to: "/candidate/certificates", label: "My Certificates" }
+    // Add more candidate links if needed
+  ],
+};
 
 export default function MainLayout() {
-  const { role, logout } = useAuth()
-  const navigate = useNavigate()
-  const menu = MENU[role] || []
+  const { role, logout } = useAuth();
+  const navigate = useNavigate();
+  const menu = MENU[role] || [];
 
   const handleLogout = () => {
-    logout()
-    navigate('/login')
-  }
+    logout();
+    navigate("/login");
+  };
 
   return (
     <div className="container-fluid vh-100">
@@ -40,7 +41,7 @@ export default function MainLayout() {
           <h4 className="mb-4 text-primary text-center">Assismart Tech Pro</h4>
           <nav className="flex-grow-1">
             <ul className="nav nav-pills flex-column">
-              {menu.map(item => (
+              {menu.map((item) => (
                 <li className="nav-item mb-1" key={item.to}>
                   <NavLink
                     end={item.exact}
@@ -55,7 +56,10 @@ export default function MainLayout() {
               ))}
             </ul>
           </nav>
-          <button className="btn btn-outline-danger mt-auto w-100" onClick={handleLogout}>
+          <button
+            className="btn btn-outline-danger mt-auto w-100"
+            onClick={handleLogout}
+          >
             Logout
           </button>
         </aside>
@@ -64,5 +68,5 @@ export default function MainLayout() {
         </main>
       </div>
     </div>
-  )
+  );
 }

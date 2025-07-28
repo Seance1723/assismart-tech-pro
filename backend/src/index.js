@@ -1,42 +1,53 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-dotenv.config();
+import morgan from 'morgan';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
+// Route imports
 import authRoutes from './routes/auth.js';
-import subscriptionRoutes from './routes/subscription.js';
-import examinerRoutes from './routes/examiners.js';
-import { errorHandler } from './middleware/errorHandler.js';
 import candidateRoutes from './routes/candidates.js';
+import examinerRoutes from './routes/examiners.js';
 import examRoutes from './routes/exams.js';
+import examAssignmentRoutes from './routes/examAssignments.js';
 import questionCategoryRoutes from './routes/questionCategories.js';
 import questionRoutes from './routes/questions.js';
-import examAssignmentRoutes from './routes/examAssignments.js';
+import certificateRoutes from './routes/certificates.js';
+import subscriptionRoutes from './routes/subscriptions.js';
 
+dotenv.config();
 const app = express();
+const PORT = process.env.PORT || 5000;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan('dev'));
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
-// API endpoints
-app.use('/auth', authRoutes);
-app.use('/api/subscriptions', subscriptionRoutes);
-app.use('/api/examiners', examinerRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/candidates', candidateRoutes);
+app.use('/api/examiners', examinerRoutes);
 app.use('/api/exams', examRoutes);
+app.use('/api/exam-assignments', examAssignmentRoutes);
 app.use('/api/question-categories', questionCategoryRoutes);
 app.use('/api/questions', questionRoutes);
-app.use('/api/exam-assignments', examAssignmentRoutes);
+app.use('/api/certificates', certificateRoutes);
+app.use('/api/subscriptions', subscriptionRoutes);
 
+app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
-// Health check / welcome
-app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to Assismart Tech Pro API' });
+app.use((err, req, res, next) => {
+  console.error(err);
+  if (!res.headersSent) {
+    res.status(err.status || 500).json({ error: err.message || 'Server Error' });
+  }
 });
 
-// Global error handler
-app.use(errorHandler);
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () =>
-  console.log(`🚀 Backend running on http://localhost:${PORT}`)
-);
+app.listen(PORT, () => {
+  console.log(`Assismart-Tech-Pro backend running at http://localhost:${PORT}`);
+});

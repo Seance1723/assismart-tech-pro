@@ -13,6 +13,8 @@ import CandidateManagement from '../features/admin/CandidateManagement'
 import ExamManagement from '../features/admin/ExamManagement'
 import QuestionGroupManagement from '../features/admin/QuestionGroupManagement'
 import AssignExamToCandidate from '../features/admin/AssignExamToCandidate';
+import CertificateTemplates from '../features/admin/CertificateTemplates';
+
 
 // EXAMINER
 import ExaminerDashboard from '../features/examiner/ExaminerDashboard'
@@ -20,6 +22,10 @@ import WelcomePage from '../features/examiner/WelcomePage'
 
 // CANDIDATE
 import CandidateDashboard from '../features/candidate/CandidateDashboard'
+import CertificateViewer from '../features/candidate/CertificateViewer';
+
+// PUBLIC
+import PublicCertificateVerify from '../features/PublicCertificateVerify';
 
 export default function AppRoutes() {
   const { token, role, user } = useAuth() // assume user includes examiner status/quota
@@ -47,6 +53,7 @@ export default function AppRoutes() {
             <Route path="admin/exams" element={<ExamManagement />} />
             <Route path="admin/question-groups" element={<QuestionGroupManagement />} />
             <Route path="admin/assign-exam" element={<AssignExamToCandidate />} />
+            <Route path="admin/certificate-templates" element={<CertificateTemplates />} />
             {/* Add more admin routes here */}
           </>
         )}
@@ -70,9 +77,13 @@ export default function AppRoutes() {
         {role === 'candidate' && (
           <>
             <Route path="candidate" element={<CandidateDashboard />} />
+            <Route path="candidate/certificates" element={<CertificateViewer />} />
             {/* Add more candidate routes here */}
           </>
         )}
+
+        {/* PUBLIC: Certificate verification route (always accessible) */}
+        <Route path="certificate/verify/:cert_uid" element={<PublicCertificateVerify />} />
 
         {/* Default and fallback */}
         <Route path="/" element={<Navigate to={`/${role}`} replace />} />
